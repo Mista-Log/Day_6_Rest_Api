@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>to_do website</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'https://use.fontawesome.com/releases/v5.15.2/css/all.css' %}" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap-to-do-list.min.css' %}" />
+</head>
+
+<body>
+  <!-- Start your project here-->
+  <style>
+    #list1 .form-control {
+      border-color: transparent;
+    }
+    #list1 .form-control:focus {
+      border-color: transparent;
+      box-shadow: none;
+    }
+    #list1 .select-input.form-control[readonly]:not([disabled]) {
+      background-color: #fbfbfb;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+    .logout-box {
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: #ffffff;
+    }
+    .logout {
+      text-decoration: none;
+      color: #000;
+    }
+  </style>
+  <section class="vh-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card" id="list1" style="border-radius: .75rem; background-color: #eff1f2;">
+            <div class="card-body py-4 px-4 px-md-5">
+
+
+
+              <div class="header">
+                <h1>My Todo</h1>
+                <div class="logout-box">
+                  <a href="logout-option" class="logout-button">Logout</a>
+                </div>
+              </div>
+
+
+
+
+              {% comment %} <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
+                <i class="fas fa-check-square me-1"></i>
+                <u>My Todo</u>
+              </p>
+              
+              <p1 class="h1 text-center mt-3 mb-4 pb-3 text-primary" style="font-size: 20px;">
+                <i class="fas fa-check-square me-1"></i>
+                <a href="{% url 'logout' %}">Logout</a>
+              </p1> {% endcomment %}
+
+              <div class="pb-2">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-row align-items-center">
+                      <form action="" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="task" class="form-control form-control-lg" id="task" placeholder="Add new...">
+                        {% comment %} <a href="" data-mdb-toggle="tooltip" title="Set due date"><i class="fas fa-calendar-alt fa-lg me-3"></i></a> {% endcomment %}
+                        <div>
+                          <button type="submit" value='Create' class="btn btn-primary">Add</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <hr class="my-4">
+              {% for list in tasks %}
+              <ul class="list-group list-group-horizontal rounded-0">
+                <li class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+                  <p class="lead fw-normal mb-0">{{list.task}}</p>
+                </li>
+                <li class="list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
+                  <div class="text-end text-muted">
+                      <p class="small mb-0"><i class="fas fa-info-circle me-2"></i>{{list.add_date}}</p></a>
+                  </div>
+                </li>
+                <li class="list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
+                  <a href="{% url 'update' list.id %}" data-mdb-toggle="tooltip" title="Update"  style="color: black;">
+                  <div class="py-2 px-3 me-2 border border-warning rounded-3 d-flex align-items-center bg-light">
+                    <p class="small mb-0">
+                        <i class="fas fa-hourglass-half me-2 text-warning"></i>
+                        Update                      
+                    </p>
+                  </div>
+                  </a>
+                </li>
+                <li class="list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
+                  <a href="{% url 'delete' list.id %}" data-mdb-toggle="tooltip" title="Delete"  style="color: black;">
+                  <div class="py-2 px-3 me-2 border border-warning rounded-3 d-flex align-items-center bg-light">
+                    <p class="small mb-0">
+                        <i class="fas fa-hourglass-half me-2 text-warning"></i>
+                      Delete
+                    </p>
+                  </div>
+                  </a>
+                </li>
+              </ul>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End your project here-->
+
+  <!-- MDB -->
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <!-- Custom scripts -->
+  <script type="text/javascript"></script>
+</body>
+
+</html>

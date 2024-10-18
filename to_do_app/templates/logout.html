@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
+ {% load static %}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glassmorphism Login Form | CodingNepal</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <style>
+    .logout-box a{
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: #ffffff;
+      margin: 20px;
+      color: #1266f1;
+    }
+    .logout-box {
+      padding: 50px;
+      align-items: center;
+      display: flex;
+    }
+  </style>
+  <div class="wrapper">
+    <h2><u>Logout</u></h2>
+    <h3 style="color: white; margin: 50px;">"Are u sure you want to log out"</h3>
+    <div class="logout-box">
+    <h4><a href="{% url 'logout' %}">Log out</a></h4>
+    <h4><a href="{% url 'index' %}">Cancle</a></h4>
+    </div>
+  </div>
+</body>
+</html>
