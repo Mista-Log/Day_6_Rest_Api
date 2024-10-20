@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'to_do_app',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +89,7 @@ DATABASES = {
 }
 
 
-DATABASES["default"] = dj_database_url.parse(config('DATABASE_URL'))
+# DATABASES["default"] = dj_database_url.parse(config('DATABASE_URL'))
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
