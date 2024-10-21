@@ -120,3 +120,41 @@ def CreateTask(request):
         return Response({"Success": "The Post was successfully created"})
     else:
         return Response(serializer.errors, status=400)
+
+
+@api_view(['DELETE'])
+def DeleteTask(request):
+    post_id = request.data.get('post_id')
+    try:
+        post = List.objects.get(id=post_id)
+        post.delete()
+        return Response({"Success": "The post was successfully deleted"})
+    except List.DoesNotExist:
+        return Response({"Error": "The post does not exist"}, status=400)
+
+@api_view(['GET'])
+def GetTask(request):
+    post_id = request.data.get('post_id')
+    try:
+        post = List.objects.get(id=post_id)
+        serializer = ListSerializer(post)
+        return Response(serializer.data)
+    except List.DoesNotExist:
+        return Response({"Error": "The post does not exist"}, status=400)
+
+@api_view(['PUT'])
+def UpdateTask(request):
+    post_id = request.data.get('post_id')
+    new_task = request.data.get('new_task')
+    new_user = request.data.get('new_user')
+    try:
+        post = List.objects.get(id=post_id)
+        if new_task:
+            post.task = new_task
+        # if new_user:
+        #     post.user = new_user
+
+        post.save()
+        return Response({"Success": "The post was successfully updataed"})
+    except List.DoesNotExist:
+        return Response({"Error": "The post does not exist"})

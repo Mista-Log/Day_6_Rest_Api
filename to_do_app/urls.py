@@ -13,6 +13,9 @@ urlpatterns = [
     # path('logout-option/', views.logout_option, name='logout-option'),
     path('get-tasks/', views.TaskApi),
     path('create-task/', views.CreateTask),
+    path('delete-task/', views.DeleteTask),
+    path('get-task/', views.GetTask),
+    path('update-task/', views.UpdateTask),
 
 
 
